@@ -3,6 +3,7 @@ package com.savingtime.rest;
 import java.util.List;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -14,18 +15,18 @@ import com.savingtime.service.ServiceReserva;
 
 
 @Path("/svtime")
-public class ApiReset {
+public class ApiRest {
 
 //************** CHAMADAS REST SOMENTE PARA MESAS******************************		
 	
-	/*@GET
+	@POST
 	@Path("/consultar/mesas")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Mesa> consultarMesas() {
+	public Mesa consultarMesas() {
 		// Chamar a service para a consulta das mesas
 		
-		ServiceMesa mesa = new ServiceMesa();
-		return mesa.consultarMesas();
+		Mesa mesa = new Mesa();
+		return mesa;
 	}
 	
 	
@@ -39,7 +40,7 @@ public class ApiReset {
 		
 	}
 	
-	*/
+	
 	@GET
 	@Path("/cadastrar/mesas")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -52,7 +53,7 @@ public class ApiReset {
 
 //************** CHAMADAS REST SOMENTE PARA Reservas******************************	
 
-	@GET
+	@POST
 	@Path("/cadastrar/reserva")
 	@Produces(MediaType.APPLICATION_JSON)
 	public void cadastrarReservas() {
