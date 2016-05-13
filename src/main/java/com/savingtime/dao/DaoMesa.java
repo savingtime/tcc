@@ -16,13 +16,13 @@ public class DaoMesa {
 	public void cadastrarMesa(Mesa mesa) throws SQLException {	
 		AcessoBD bd = new AcessoBD();
 		Connection conn = bd.obtemConexao();	
-		String sqlSelect = "insert into mesas(capacidade, status) values (?,?);";
+		String sqlSelect = "insert into mesas (capacidade, status_mesa) values (?,?);";
 
 		try{
 			PreparedStatement stm = conn.prepareStatement(sqlSelect);
 				for(int i=0; i < mesa.getQuantidade(); i++){
 					stm.setInt(1, mesa.getCapacidade());
-					stm.setInt(2, mesa.getStatus());
+					stm.setString(2, mesa.getStatus());
 					stm.executeUpdate();
 				}
 			stm.close();
@@ -34,12 +34,12 @@ public class DaoMesa {
 	public void alterarMesa(Mesa mesa) throws SQLException {	
 		AcessoBD bd = new AcessoBD();
 		Connection conn = bd.obtemConexao();	
-		String sqlSelect = "update mesas set capacidade=?, status=? where id=?);";
+		String sqlSelect = "update Mesas set capacidade=?, status_mesa=? where cod_tipo_mesa=?);";
 
 		try{
 			PreparedStatement stm = conn.prepareStatement(sqlSelect);	
 				stm.setInt(1, mesa.getCapacidade());
-				stm.setInt(2, mesa.getStatus());
+				stm.setString(2, mesa.getStatus());
 				stm.setInt(3, mesa.getCodigo());
 				stm.executeUpdate();
 				stm.close();
@@ -53,28 +53,29 @@ public class DaoMesa {
 			AcessoBD bd = new AcessoBD();	
 			Connection conn = bd.obtemConexao();
 	         
-	        String sqlSelect = "select * from mesas";
+	        String sqlSelect = "select status_mesa, capacidade, cod_tipo_mesa from Mesas";
 	        ResultSet rs = null;
 	        List<Mesa> listmesa = new ArrayList<Mesa>();
+	        
+	        
 	        try{
 	        	PreparedStatement stm = conn.prepareStatement(sqlSelect);
 	            rs = stm.executeQuery();
 	         
-	            if(!rs.next()){
-	 
-	              //tratar caso não tenha mesas cadastradas. 
-	            }else{
+	            // ENCONTRAR UMA SOLUÇÃO SE A LISTA FOR VAZIA.
+	            
 	            	while(rs.next()){
 	            	
-		            	mesa.setStatus(rs.getInt(1));
+		            	mesa.setStatus(rs.getString(1));
 		                mesa.setCapacidade(rs.getInt(2));
 		                mesa.setCodigo(rs.getInt(3));
 		                listmesa.add(mesa);
-		                
+		                System.out.print("passei aquiii");            
 	            	}    
-	            }
+	            
 		}catch (Exception e){			
 			System.out.println("erro");
+			e.printStackTrace();
 		}
 		
 	    return listmesa;  

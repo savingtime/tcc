@@ -29,7 +29,7 @@ public class AcessoBD
    {
       return DriverManager.getConnection
          (
-         "jdbc:mysql://localhost/locadora?user=root&password="
+         "jdbc:mysql://localhost/savingtime?user=root&password="
          );
    }
 }

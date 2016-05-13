@@ -1,9 +1,14 @@
 package com.savingtime.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Mesa {
 
 	
-	private int capacidade, quantidade, status, codigo; 
+	@XmlElement private int capacidade, quantidade,codigo;
+	@XmlElement private String status;	
 	
 	
 	public Mesa(){
@@ -29,12 +34,12 @@ public class Mesa {
 	}
 
 
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
 
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -44,6 +49,12 @@ public class Mesa {
 
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
+	}
+
+	@Override
+	public String toString() {
+		return "Mesa [capacidade=" + capacidade + ", quantidade=" + quantidade + ", codigo=" + codigo + ", status="
+				+ status + "]";
 	}
 	
 }

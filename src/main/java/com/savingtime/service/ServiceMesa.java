@@ -14,7 +14,8 @@ public class ServiceMesa {
 		daomesa.cadastrarMesa(mesa);
 		
 	}
-	public List<Mesa> consultarMesas(Mesa mesa) throws SQLException{
+	public List<Mesa> consultarMesas() throws SQLException{
+		Mesa mesa = new Mesa();
 		DaoMesa daomesa = new DaoMesa();
 		return daomesa.consultarMesa(mesa);
 		

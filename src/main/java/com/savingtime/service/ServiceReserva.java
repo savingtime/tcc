@@ -8,7 +8,8 @@ import com.savingtime.model.Reserva;
 
 public class ServiceReserva {
 
-	public void efetuarReserva(Reserva reserva) throws SQLException{
+	public void efetuarReserva() throws SQLException{
+		Reserva reserva =  new Reserva();
 		DaoReserva daoreserv = new DaoReserva();
 		daoreserv.cadastrarReserva(reserva);
 		
