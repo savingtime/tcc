@@ -1,9 +1,14 @@
 package com.savingtime.model;
 
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Atendimento {
 
-	private String status, nomeResponsavel,tipoEvento, data,horaCheckIn, horaCheckOut, horaAtendimento, telefone;
-	private int qtPessoas, codigoAtendimento;
+	@XmlElement private String status, nomeResponsavel,tipoEvento, telefone, data,horaCheckIn, horaCheckOut, horaAtendimento;
+	@XmlElement private int qtPessoas, codigoAtendimento;
 	
 	public Atendimento(){
 			

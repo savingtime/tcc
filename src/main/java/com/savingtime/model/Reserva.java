@@ -1,9 +1,14 @@
 package com.savingtime.model;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+@XmlRootElement
 public class Reserva {
 
-	private String dataReserva, horaReserva, cpf, tipoEvento, telefone;
-	private int codReserva, qtPessoas;
+	@XmlElement private String dataReserva, horaReserva, cpf, tipoEvento, telefone, statusReserva;
+	@XmlElement private int codReserva, qtPessoas;
 	
 	public Reserva(){
 		
@@ -65,6 +70,16 @@ public class Reserva {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+
+	public String getStatusReserva() {
+		return statusReserva;
+	}
+
+
+	public void setStatusReserva(String statusReserva) {
+		this.statusReserva = statusReserva;
 	}
 	
 	

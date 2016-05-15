@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Mesa {
 
 	
-	@XmlElement private int capacidade, quantidade,codigo;
+	@XmlElement private int capacidade, codigo;
 	@XmlElement private String status;	
 	
 	
@@ -21,16 +21,6 @@ public class Mesa {
 
 	public void setCapacidade(int capacidade) {
 		this.capacidade = capacidade;
-	}
-
-
-	public int getQuantidade() {
-		return quantidade;
-	}
-
-
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
 	}
 
 
@@ -53,7 +43,7 @@ public class Mesa {
 
 	@Override
 	public String toString() {
-		return "Mesa [capacidade=" + capacidade + ", quantidade=" + quantidade + ", codigo=" + codigo + ", status="
+		return "Mesa [capacidade=" + capacidade + ", codigo=" + codigo + ", status="
 				+ status + "]";
 	}
 	

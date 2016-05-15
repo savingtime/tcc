@@ -8,8 +8,7 @@ import com.savingtime.model.Reserva;
 
 public class ServiceReserva {
 
-	public void efetuarReserva() throws SQLException{
-		Reserva reserva =  new Reserva();
+	public void efetuarReserva(Reserva reserva) throws SQLException{
 		DaoReserva daoreserv = new DaoReserva();
 		daoreserv.cadastrarReserva(reserva);
 		
@@ -27,32 +26,29 @@ public class ServiceReserva {
 		
 	}
 	
-	public Reserva consultarReservaCod(int codReserva) throws SQLException{
-		DaoReserva daoreserv = new DaoReserva();
-		Reserva reserva = new Reserva();
-		return daoreserv.consultarReservaCodigo(codReserva, reserva );
-		
-	}
 	
 	public Reserva consultarReservaCpf(String cpf) throws SQLException{
 		DaoReserva daoreserv = new DaoReserva();
-		Reserva reserva = new Reserva();
-		return daoreserv.consultarReservaCpf(cpf, reserva);
+		return daoreserv.consultarReservaCpf(cpf);
 		
 	}
 	
+	public Reserva consultarReservaCodigo(int codigo) throws SQLException{
+		DaoReserva daoreserv = new DaoReserva();
+		return daoreserv.consultarReservaCodigo(codigo);
+		
+	}
+
+	
 	public List<Reserva> consultarReservaData(String dataInicio, String dataFinal) throws SQLException{
 		DaoReserva daoreserv = new DaoReserva();
-		Reserva reserva = new Reserva();
-		return daoreserv.consultarReservaData(dataInicio, dataFinal, reserva);
+		return daoreserv.consultarReservaData(dataInicio, dataFinal);
 		
 	}
 	
 	public List<Reserva> consultarTodasReservas() throws SQLException{
 		DaoReserva daoreserv = new DaoReserva();
-		Reserva reserva = new Reserva();
-		return daoreserv.consultarReserva(reserva);
-		
+		return daoreserv.consultarTodasReservas();	
 		
 	}
 }

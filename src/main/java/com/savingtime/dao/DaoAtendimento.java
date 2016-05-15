@@ -12,11 +12,10 @@ import com.savingtime.model.Atendimento;
 
 public class DaoAtendimento {
 	
-	public void cadastrarAtendimento(Atendimento atend) throws SQLException {	
+	public void efetuarCheckIn(Atendimento atend) throws SQLException {	
 		AcessoBD bd = new AcessoBD();
 		Connection conn = bd.obtemConexao();	
-		String sqlSelect = "insert into atendimento (nome, qtpessoas, telefone, tipoevento, data, hora_checkin"
-							+ "hora_atendimento, hora_checkout) values (?,?,?,?,?,?,?);";
+		String sqlSelect = "insert into atendimento (nome, qtpessoas, telefone, tipoevento, data, hora_checkin) values (?,?,?,?,?,?);";
 
 		try{
 			PreparedStatement stm = conn.prepareStatement(sqlSelect);
@@ -25,9 +24,7 @@ public class DaoAtendimento {
 				stm.setString(3, atend.getTelefone());
 				stm.setString(4, atend.getTipoEvento());
 				stm.setString(5, atend.getData());
-				stm.setString(5, atend.getHoraCheckIn());
-				stm.setString(6, atend.getHoraAtendimento());
-				stm.setString(6, atend.getHoraCheckOut());
+				stm.setString(6, atend.getHoraCheckIn());
 				stm.executeUpdate();	
 				stm.close();
 		}catch (Exception e){
@@ -35,7 +32,40 @@ public class DaoAtendimento {
 		}
 	}
 
+	public void iniciarAtendimento(Atendimento atend) throws SQLException {	
+		AcessoBD bd = new AcessoBD();
+		Connection conn = bd.obtemConexao();	
+		String sqlSelect = "update atendimento set hora_atendimento where cod_atendimento=?;";
+
+		try{
+			PreparedStatement stm = conn.prepareStatement(sqlSelect);	
+				stm.setString(1, atend.getHoraAtendimento());
+				stm.setInt(2, atend.getCodigoAtendimento());
+				stm.executeUpdate();
+				stm.close();
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+	}
 	
+	
+	public void efetuarCheckOut(Atendimento atend) throws SQLException {	
+		AcessoBD bd = new AcessoBD();
+		Connection conn = bd.obtemConexao();	
+		String sqlSelect = "update atendimento set hora_checkout where cod_atendimento=?;";
+
+		try{
+			PreparedStatement stm = conn.prepareStatement(sqlSelect);	
+				stm.setString(1, atend.getHoraCheckOut());
+				stm.setInt(2, atend.getCodigoAtendimento());
+				stm.executeUpdate();
+				stm.close();
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+
 	
 	public List<Atendimento> consultarAtendimento(Atendimento atend) throws SQLException {	
 		

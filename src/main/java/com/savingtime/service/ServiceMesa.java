@@ -9,19 +9,31 @@ import com.savingtime.model.Mesa;
 
 public class ServiceMesa {
 	
-	public void cadastrarMesas(Mesa mesa) throws SQLException{
+	public void cadastrarMesas(Mesa mesa, int quantidade) throws SQLException{
 		DaoMesa daomesa = new DaoMesa();
-		daomesa.cadastrarMesa(mesa);
+		daomesa.cadastrarMesa(mesa, quantidade);
 		
 	}
-	public List<Mesa> consultarMesas() throws SQLException{
-		Mesa mesa = new Mesa();
+	public List<Mesa> consultarTodasMesas() throws SQLException{
 		DaoMesa daomesa = new DaoMesa();
-		return daomesa.consultarMesa(mesa);
+		return daomesa.consultarTodasMesas();
 		
 	}
 	
-	public void alterarMesas(Mesa mesa) throws SQLException{
+	public List<Mesa> consultarMesasCapacidade(int capacidade) throws SQLException{
+		DaoMesa daomesa = new DaoMesa();
+		return daomesa.consultarMesasCapacidade(capacidade);
+		
+	}
+	
+	public List<Mesa> consultarMesaStatus(String status) throws SQLException{
+		
+		DaoMesa daomesa = new DaoMesa();
+		return daomesa.consultarMesaStatus(status);
+		
+	}
+	
+	public void alterarMesa(Mesa mesa) throws SQLException{
 		DaoMesa daomesa = new DaoMesa();
 		daomesa.alterarMesa(mesa);
 		
